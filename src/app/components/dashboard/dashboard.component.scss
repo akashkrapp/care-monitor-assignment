@@ -7,225 +7,6 @@
   font-family: 'Roboto', sans-serif;
 }
 
-// Toolbar styles
-.app-toolbar {
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  padding: 0 24px;
-  height: 64px;
-
-  @media (max-width: 576px) {
-    padding: 0 12px;
-  }
-
-  .brand {
-    display: flex;
-    align-items: center;
-
-    .brand-icon {
-      font-size: 28px;
-      height: 28px;
-      width: 28px;
-      margin-right: 8px;
-
-      @media (max-width: 576px) {
-        font-size: 24px;
-        height: 24px;
-        width: 24px;
-      }
-    }
-
-    .brand-name {
-      font-size: 20px;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-
-      @media (max-width: 576px) {
-        font-size: 18px;
-      }
-
-      @media (max-width: 360px) {
-        display: none;
-      }
-    }
-  }
-
-  .toolbar-actions {
-    display: flex;
-    align-items: center;
-
-    .user-menu-button {
-      display: flex;
-      align-items: center;
-      padding: 0 12px;
-      height: 40px;
-      border-radius: 20px;
-      background-color: rgba(255, 255, 255, 0.15);
-      transition: all 0.2s ease;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-      &:hover {
-        background-color: rgba(255, 255, 255, 0.25);
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
-      }
-
-      @media (max-width: 576px) {
-        padding: 0 8px;
-      }
-
-      .username {
-        margin: 0 8px;
-        max-width: 150px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        font-weight: 500;
-
-        @media (max-width: 480px) {
-          max-width: 100px;
-        }
-
-        @media (max-width: 400px) {
-          display: none;
-        }
-      }
-
-      mat-icon:last-child {
-        font-size: 18px;
-        height: 18px;
-        width: 18px;
-        opacity: 0.8;
-      }
-    }
-  }
-}
-
-// Spacer utility
-.spacer {
-  flex: 1 1 auto;
-}
-
-// User menu styling
-.user-menu {
-  min-width: 240px;
-  border-radius: 12px;
-  overflow: hidden;
-  margin-top: 8px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-  background-color: #f9f9f9;
-
-  .menu-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 24px 20px;
-    background-color: #f9f9f9;
-    color: #333;
-    text-align: center;
-    border-bottom: 1px solid #eaeaea;
-  }
-
-  .menu-header mat-icon {
-    font-size: 48px;
-    height: 48px;
-    width: 48px;
-    margin-bottom: 12px;
-    color: #333;
-    background-color: #f0f0f0;
-    border-radius: 50%;
-    padding: 8px;
-  }
-
-  button[mat-menu-item] {
-    padding: 16px 20px;
-    height: auto;
-    line-height: 1.5;
-    color: #888;
-
-    mat-icon {
-      margin-right: 16px;
-      color: #888;
-      font-size: 20px;
-      height: 20px;
-      width: 20px;
-    }
-  }
-
-  button[disabled] {
-    opacity: 0.7;
-    cursor: not-allowed;
-
-    mat-icon {
-      opacity: 0.7;
-    }
-  }
-
-  mat-divider {
-    margin: 8px 0;
-  }
-
-  .menu-footer {
-    padding: 16px;
-    display: flex;
-    justify-content: center;
-    background-color: #f9f9f9;
-
-    .logout-button {
-      width: 100%;
-      border-radius: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 16px;
-      transition: all 0.2s ease;
-      background-color: #9c27b0;
-      color: white;
-      font-weight: 500;
-
-      &:hover {
-        box-shadow: 0 4px 12px rgba(156, 39, 176, 0.4);
-        transform: translateY(-1px);
-        background-color: #8e24aa;
-      }
-
-      mat-icon {
-        margin-right: 10px;
-        font-size: 20px;
-        height: 20px;
-        width: 20px;
-        color: white;
-      }
-    }
-  }
-
-  .user-info {
-    width: 100%;
-    text-align: center;
-
-    .user-name {
-      margin: 0;
-      font-weight: 600;
-      font-size: 18px;
-      color: #333;
-    }
-
-    .user-email {
-      margin: 4px 0 0;
-      color: #666;
-      font-size: 14px;
-    }
-
-    .user-role {
-      margin: 6px 0 0;
-      color: #666;
-      font-size: 12px;
-      background-color: #f0f0f0;
-      padding: 3px 10px;
-      border-radius: 12px;
-      display: inline-block;
-    }
-  }
-}
-
 // Main content area
 .dashboard-content {
   flex: 1;
@@ -239,6 +20,130 @@
   }
 
   @media (max-width: 576px) {
+    padding: 12px;
+  }
+}
+
+// Welcome section
+.welcome-section {
+  text-align: center;
+  margin-bottom: 32px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 24px;
+  }
+
+  @media (max-width: 576px) {
+    margin-bottom: 20px;
+  }
+
+  .welcome-heading {
+    font-size: 32px;
+    font-weight: 300;
+    color: #1976d2;
+    margin-bottom: 8px;
+
+    @media (max-width: 768px) {
+      font-size: 28px;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+  }
+
+  .welcome-subheading {
+    font-size: 18px;
+    color: #757575;
+    margin: 0;
+
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 14px;
+    }
+  }
+}
+
+// Dashboard grid layout
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 769px) and (max-width: 1200px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+// Card styles
+.dashboard-card {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+// Action buttons
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 32px;
+
+  .action-button {
+    padding: 0 20px;
+    height: 48px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+
+    mat-icon {
+      margin-right: 8px;
+    }
+
+    &.active-button {
+      box-shadow: 0 4px 10px rgba(25, 118, 210, 0.3);
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(25, 118, 210, 0.4);
+      }
+    }
+
+    &[disabled] {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  }
+}
+
+// Footer
+.dashboard-footer {
+  padding: 16px;
+  text-align: center;
+  color: #757575;
+  font-size: 14px;
+  margin-top: auto;
+
+  @media (max-width: 576px) {
+    font-size: 12px;
     padding: 12px;
   }
 }

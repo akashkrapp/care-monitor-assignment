@@ -4,14 +4,12 @@ import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDividerModule } from '@angular/material/divider';
 import { AuthService } from '../../services/auth.service';
 import { ROUTES } from '../../constants/routes.constants';
+import { HeaderComponent } from '../shared/header/header.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,12 +20,10 @@ import { ROUTES } from '../../constants/routes.constants';
     MatCardModule,
     MatButtonModule,
     MatIconModule,
-    MatToolbarModule,
-    MatTooltipModule,
-    MatMenuModule,
-    MatDividerModule,
     MatGridListModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatDividerModule,
+    HeaderComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
