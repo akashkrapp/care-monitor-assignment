@@ -1,0 +1,77 @@
+<div class="login-container">
+  <div class="login-wrapper">
+    <div class="logo-container">
+      <div class="logo">Care Monitor</div>
+      <div class="tagline">Caring for your health, monitoring for your safety</div>
+    </div>
+
+    <mat-card class="login-card">
+      <mat-card-header>
+        <mat-card-title>Welcome Back</mat-card-title>
+        <mat-card-subtitle>Sign in to access your dashboard</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ labels.EMAIL }}</mat-label>
+            <mat-icon matPrefix class="input-icon">email</mat-icon>
+            <input matInput type="email" formControlName="email" [placeholder]="placeholders.ENTER_EMAIL" />
+            @if (email?.hasError('required') && email?.touched) {
+              <mat-error>{{ validationMessages.EMAIL_REQUIRED }}</mat-error>
+            }
+            @if (email?.hasError('email') && email?.touched) {
+              <mat-error>{{ validationMessages.EMAIL_INVALID }}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ labels.PASSWORD }}</mat-label>
+            <mat-icon matPrefix class="input-icon">lock</mat-icon>
+            <input matInput type="password" formControlName="password" [placeholder]="placeholders.ENTER_PASSWORD" />
+            @if (password?.hasError('required') && password?.touched) {
+              <mat-error>{{ validationMessages.PASSWORD_REQUIRED }}</mat-error>
+            }
+            @if (password?.hasError('minlength') && password?.touched) {
+              <mat-error>{{ validationMessages.PASSWORD_MIN_LENGTH }}</mat-error>
+            }
+          </mat-form-field>
+
+          @if (error(); as errorMessage) {
+            <div class="error-message">
+              <mat-icon>error_outline</mat-icon>
+              <span>{{ errorMessage }}</span>
+            </div>
+          }
+
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            class="full-width submit-button"
+            [disabled]="isLoading() || loginForm.invalid"
+          >
+            @if (isLoading()) {
+              <mat-spinner diameter="20" class="spinner"></mat-spinner>
+              <span>{{ labels.LOGGING_IN }}</span>
+            } @else {
+              {{ labels.LOGIN }}
+            }
+          </button>
+
+          <div class="login-footer">
+            <div class="demo-credentials">
+              <p>Demo Credentials:</p>
+              <p><strong>Email:</strong> test@example.com</p>
+              <p><strong>Password:</strong> Test@123</p>
+            </div>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+
+    <div class="login-footer-text">
+      <p>© 2025 Care Monitor. All rights reserved.</p>
+    </div>
+  </div>
+</div>

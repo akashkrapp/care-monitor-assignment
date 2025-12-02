@@ -1,0 +1,151 @@
+<div class="list-container">
+  <!-- Header Toolbar -->
+  <mat-toolbar color="primary" class="app-toolbar">
+    <div class="toolbar-left">
+      <button mat-icon-button routerLink="/dashboard" matTooltip="Back to Dashboard">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <span>Patient List</span>
+    </div>
+
+    <span class="spacer"></span>
+
+    <div class="toolbar-actions">
+      <button mat-icon-button matTooltip="Search Patients">
+        <mat-icon>search</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Filter List">
+        <mat-icon>filter_list</mat-icon>
+      </button>
+      <button mat-icon-button (click)="onLogout()" matTooltip="Logout">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <div class="content">
+    <!-- Page Header -->
+    <div class="page-header">
+      <h1>Patient Directory</h1>
+      <p>View and manage patient records</p>
+
+      <div class="header-actions">
+        <button mat-raised-button color="primary" class="add-patient-btn">
+          <mat-icon>person_add</mat-icon>
+          Add New Patient
+        </button>
+      </div>
+    </div>
+
+    <!-- Patient List Card -->
+    <mat-card class="patients-card">
+      <mat-card-header>
+        <mat-icon mat-card-avatar>people</mat-icon>
+        <mat-card-title>Patients</mat-card-title>
+        <mat-card-subtitle>{{ items().length }} patients in database</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <!-- Loading State -->
+        @if (isLoading()) {
+          <div class="loading-container">
+            <mat-spinner></mat-spinner>
+            <p class="loading-text">Loading patients...</p>
+          </div>
+        }
+        <!-- Error State -->
+        @else if (error()) {
+          <div class="error-container">
+            <mat-icon class="error-icon">error_outline</mat-icon>
+            <h3>Error Loading Patients</h3>
+            <p class="error-message">{{ error() }}</p>
+            <button mat-raised-button color="primary" (click)="onRetry()">
+              <mat-icon>refresh</mat-icon>
+              Retry
+            </button>
+          </div>
+        }
+        <!-- Empty State -->
+        @else if (items().length === 0) {
+          <div class="empty-container">
+            <mat-icon class="empty-icon">people_outline</mat-icon>
+            <p>No patients found</p>
+            <button mat-raised-button color="primary" (click)="loadItems()">
+              <mat-icon>refresh</mat-icon>
+              Load Patients
+            </button>
+          </div>
+        }
+        <!-- Patient List -->
+        @else {
+          <div class="patient-list">
+            @for (patient of items(); track patient.id) {
+              <div class="patient-card">
+                <div class="patient-avatar">
+                  @if (patient.avatar) {
+                    <img [src]="patient.avatar" [alt]="patient.name" />
+                  } @else {
+                    <div class="avatar-placeholder">
+                      {{ patient.first_name?.[0] }}{{ patient.last_name?.[0] }}
+                    </div>
+                  }
+                </div>
+
+                <div class="patient-info">
+                  <h3 class="patient-name">{{ patient.name }}</h3>
+                  <p class="patient-email">
+                    <mat-icon>email</mat-icon>
+                    {{ patient.email }}
+                  </p>
+                  <p class="patient-condition">
+                    <mat-icon>medical_services</mat-icon>
+                    {{ patient.description && patient.description.includes(' - ') ?
+                       patient.description.split(' - ')[1] : 'No condition' }}
+                  </p>
+                </div>
+
+                <div class="patient-actions">
+                  <button mat-icon-button color="primary" matTooltip="View Patient Details">
+                    <mat-icon>visibility</mat-icon>
+                  </button>
+                  <button mat-icon-button color="accent" matTooltip="Edit Patient">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button mat-icon-button color="warn" matTooltip="Delete Patient">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+            }
+          </div>
+
+          <!-- Pagination Controls -->
+          <div class="pagination-controls">
+            <button mat-button disabled>
+              <mat-icon>navigate_before</mat-icon>
+              Previous
+            </button>
+            <span class="page-info">Page 1 of 1</span>
+            <button mat-button disabled>
+              Next
+              <mat-icon>navigate_next</mat-icon>
+            </button>
+          </div>
+        }
+      </mat-card-content>
+    </mat-card>
+
+    <!-- JSON Data Display -->
+    <mat-card class="json-data-card">
+      <mat-card-header>
+        <mat-icon mat-card-avatar>code</mat-icon>
+        <mat-card-title>API Response Data</mat-card-title>
+        <mat-card-subtitle>Raw JSON from API</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <pre class="json-data">{{ items() | json }}</pre>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
